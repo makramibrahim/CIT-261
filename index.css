@@ -1,0 +1,64 @@
+/***************************
+ Home page 
+****************************/
+header{
+background-color: dodgerblue;
+padding: 1em;
+color: white;
+text-align: center;
+border-radius: 25px;
+}
+body{
+  background-image:radial-gradient(blue, wheat);
+  padding: 5em;
+}
+
+.mainPage{
+ text-align:left;
+ padding: 4em;
+ border: 2em solid lightblue;
+ background-color: whitesmoke; 
+ min-height: 100%;
+ border-radius: 25px;
+ 
+}
+
+p{
+ margin: 7em;
+}
+
+ul li{
+ text-decoration: none;
+  text-align: left;
+}
+
+ul li a{
+ text-decoration: none;
+  text-align: left;
+}
+a{
+ text-decoration: none;
+  text-align: left;
+
+}
+a:link {
+   color: black;
+   font-family: cursive;
+   font-size: 18px;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: lightblue;
+}
+
+footer{
+ background-color: dodgerblue;
+ color: white;
+ text-align: center;
+ padding: 1em;
+ border-radius: 25px;
+}
