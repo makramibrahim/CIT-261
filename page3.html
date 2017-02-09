@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>CIT 261 | Object Creation</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="style/index.css" media="screen">
+
+<script type="text/javascript">
+
+function basePerson(first, gender, age, eye) {
+    this.firstName = first;
+    this.gender = gender;
+    this.age = age;
+    this.eyeColor = eye;
+}
+// creat new arrays for each 
+var person = new basePerson();
+var parents = new basePerson();
+var pDetails = new basePerson();
+
+function inheritance() {
+  person = {
+    firstName : document.getElementById('fName').value,
+    age       : document.getElementById('yage').value,
+};
+  
+
+   document.getElementById("output1").innerHTML = person.firstName  + ", you are " + person.age + " years old.";
+}
+
+function parentsInfo() {
+ parents = {
+    fAge: document.getElementById('fAge').value,
+    mAge: document.getElementById('mAge').value,
+};
+
+ document.getElementById("output2").innerHTML = "Parents are " +parents.fAge + " and " + parents.mAge + " years old.";
+}
+
+
+function displayInfo() {
+
+  pDetails = {
+      gender: document.getElementById('gender').value,
+      eyeColor: document.getElementById('eColor').value,
+   };
+   
+    if (pDetails.gender === 'male' || pDetails.gender === 'Male'){
+ 
+     pDetails.gender = "You're a very cool Man!";
+    }
+    else {
+    pDetails.gender= "You're a very cool Girl!";
+    }
+
+    if (pDetails.eyeColor === 'Green' ||  pDetails.eyeColor === 'green' || pDetails.eyeColor ==='blue' 
+            || pDetails.eyeColor ==='Blue') {
+      pDetails.eyeColor = "You seem to have blonde hair!";
+    }
+    
+    else if ( pDetails.eyeColor === 'black' ||  pDetails.eyeColor === 'Black') {
+       pDetails.eyeColor = "You seem to have black hair!";
+    }
+
+    else {
+      pDetails.eyeColor = "You seem to have brown hair!";
+    }
+
+    document.getElementById('displayInfo').innerHTML =  pDetails.gender + " " +  pDetails.eyeColor;
+}
+
+function displayAll() {
+
+document.getElementById('displayAll').innerHTML =  "Hi " + person.firstName + ". " + pDetails.gender + " " + pDetails.eyeColor + " <br> You said you're " + person.age + " years old. Do you know that your Mom was? " + (parents.mAge - person.age) + "<br> and your Dad was " + (parents.fAge - person.age) + " years old when you were born. See!"  
+}
+
+</script>
+</head>
+<body>
+  <header>
+<h1>CIT 261 Mobile Application-BYUI</h1>
+<ul>
+  <li><a href="index.html">Home</a></li>
+</ul>
+</header> 
+ <div class="mainPage">
+ 
+<div class="content">
+ <h4>Object Creation Functions, Inheritance, Properties, Methods, and Instantation</h4>
+ <br><br>
+<input type="input" id="fName" placeholder="Name">
+<input type="input" id="yage" placeholder="Age"><br>
+<button type="button" onclick="inheritance();">Submit</button>
+<div id="output1"></div><br><br>
+
+ <input type="input" id="fAge" placeholder="Dad's age">
+ <input type="input"  id="mAge" placeholder="Mom's age"><br>
+ <button type="button" onclick="parentsInfo();">Submit</button>
+ <div id="output2"></div><br><br>
+
+ <h4>Let's us know more about you</h4>
+  <input type="input" id="gender" placeholder="Gender">
+  <input type="input" id="eColor" placeholder="Eye Color"><br>
+ <button type="button" onclick="displayInfo();">Submit</button>
+ <div id="displayInfo"></div><br><br>
+ <br><br>
+
+<h4>Here's your summary</h4>
+ <button type="button" onclick="displayAll();">Display</button>
+ <br>
+ <div id="displayAll"></div><br><br><br>
+ </div>
+
+</div>
+ <footer>&COPY; 2017 Makram Ibrahim </footer>
+</body>
+</html>
+</body>
+</html>

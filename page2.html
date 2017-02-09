@@ -4,85 +4,7 @@
  <title>CIT 261 Course</title>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <style>
-header{
-background-color: dodgerblue;
-padding: 1em;
-color: white;
-text-align: center;
-border-radius: 25px;
-
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6
- {
-   color: white;
-   text-shadow: 2px 2px 2px black, 0 0 25px red, 10px 10px 15px blue;
-}
-
-
-body{
- background-image:radial-gradient(blue, wheat);
- padding: 5em;
-}
-
-.mainPage{
-text-align:left;
-padding: 2em;
-border: 2em solid lightblue;
-background-color: whitesmoke; 
-min-height: 100%;
-border-radius: 25px;
-
-}
-
-p{
-margin: 2em;
-}
-
-ul li{
-text-decoration: none;
- text-align: left;
-}
-
-a li{
- text-decoration: none;
- text-align: left;
-}
-
-
-a:link {
-  color: white;
-  font-family: cursive;
-  font-size: 18px;
-}
-
-a:visited {
-   color: white;
-   text-decoration: none;
-
-}
-
-a:hover {
-   color: lightblue;
-}
-
-footer{
-background-color: dodgerblue;
-color: white;
-text-align: center;
-padding: 1em;
-border-radius: 25px;
-text-shadow: 2px 2px 2px black, 0 0 25px red, 10px 10px 15px blue;
-}
-
-</style>
-
+ 
 <script type="text/javascript">
 
 /**********************For Loop*********************/
@@ -119,18 +41,27 @@ function whileLoop(){
   document.getElementById("whileloop").innerHTML = text; 
 }
 
-/**********************While Loop*********************/
-function whileDoLoop(){
-  var name = "";
-   document.getElementById("doInput").value;
+/**********************While Do Loop*********************/
+function whileDoLoop() {
+    var inputNumber = parseFloat(document.getElementById('inputNumber').value);
 
-  do
-  {
-    alert("Hi, are you lost");
-  }
-  while(name)
-  document.getElementById("whiledoloop").value = name + alert;
+    var input1 = parseFloat(document.getElementById('input1').value);
+    var input2 = parseFloat(document.getElementById('input2').value);
+    
+     var outputDoLoop = " ";
+    do {
+        if (input1 + inputNumber >= input2) {
+            break;
+        }
+        else {
+            input1 += inputNumber;
+            outputDoLoop += input1 + " ";   
+        }
+    } while (input1 < input2)
+    
+  document.getElementById("outputDo").innerHTML= outputDoLoop;
 }
+
 
 /********************IF Statement********************/
 function process() {
@@ -192,6 +123,7 @@ function ifStatement(grade){
 
 function clearGrade(){
 
+  document.getElementById('enterGrade').value = "";
   document.getElementById("leGrade").innerHTML = "";
 
 }
@@ -216,26 +148,55 @@ function convert(degree){
 
 }
      
-/**********************Array*********************/
-function array(){
+/**********************Array*************************/
+ var names = new Array();
+ var phone = new Array();
 
-    var message = ", I would like to meet you one day!";
-    var text = document.getElementById("arrayInput").value;
-    document.getElementById("arrayDemo").value = "Hi " + text + message;
+function array() {
+
+  var inputArray1 = document.getElementById('inputArray1').value;
+  var inputArray2 = document.getElementById('inputArray2').value;
+
+    names.push(inputArray1);
+    document.getElementById("inputArray1").value = " ";
+
+
+    phone.push(inputArray2);
+    document.getElementById("inputArray2").value = " ";
+
+    document.getElementById("arrayDemo1").innerHTML = names + "  ";
+    document.getElementById("arrayDemo2").innerHTML = phone + "  ";
+}
+
+function clearArray() {
+  names = [];
+  phone = [];
+
+  document.getElementById("arrayDemo1").innerHTML = names;
+  document.getElementById("arrayDemo2").innerHTML = phone;
+
 
 }
 
-/**********************Array*********************/
+/**********************Associative Array*********************/
 function asArray(){
-   var name = document.getElementById("input1").value;
-   var age = document.getElementById("input2").value;
-   var address = document.getElementById("input3").value;
-   var state = document.getElementById("input4").value;
-   var zip = document.getElementById("input5").value;
-   document.getElementById("demo").value = name + " " + age + " " + address + " " + state + " " + zip; 
+  var asInput = document.getElementById('asArrayinput').value;
+
+  var computer = {
+    Brand:"Apple MacBook Pro 15\"",
+    Year:"Mid 2015",
+    Software: "macOS Sierra V.10.12.3(Latest update!)",
+    Processor:"2.5 GHz Intel Core i7",
+    Memory:"16 GB 1600 MHz DD3",
+    Graphic:"Intel 1.5GB & AMD Radeon 2G R9 M370X",
+  }
+
+    document.getElementById('asArrayOutput').innerHTML = computer[asInput];
+
 }
 
 </script>
+
 </head>
 <body>
   <header>
@@ -248,55 +209,82 @@ function asArray(){
  <div class="mainPage">
 
  <!--For Loop-->
+ <div class="forLoop">
 <h3>For Loop Example</h3>
 <p> Get a random number<br>
  <button type="button" onclick="forLoop()">Generator</button><br>
-<textarea id="forloop"></textarea></p><br/>
+<textarea id="forloop"></textarea></p>
+</div>
 
 <!--While Loop-->
+<div class="whileLoop">
 <h3>While Loop Example</h3>
 <p>Count till 20<br>
  <button type="button" onclick="whileLoop()">Count</button><br>
-<textarea id="whileloop"></textarea></p><br/>
+<textarea id="whileloop"></textarea></p>
+</div>
 
 <!--While Do Loop-->
+<div class="doLoop">
 <p><h3>While Do Loop Example</h3><br>
-Type your name here</p>
-<p><input id="doInput" placeholder="Enter Name"></input>
- <button type="button" onclick="whileDoLoop();">SEND</button></p><br>
+ Count by whatever number you want</p>
+  Add#<input type="input" id="inputNumber"><br>
+ 1st#<input type="input" id="input1"><br>
+ 2nd#<input type="input" id="input2">
+ <button type="button" onclick="whileDoLoop();">Count</button>
+ <div id="outputDo"></div>
+</p><br>
+</div>
 
 <!--If Statement-->
+<div class="ifStatement">
 <h3>If Statement Example</h3>
-<p><strong>Enter Score </strong>
-<input type="text" id="enterGrade" onchange="process();" 
-onclick="clearGrade();">
-<input type =button value='Calculate Grade' onclick="process();"></p>
+<strong>Enter Score </strong>
+<input type="text" id="enterGrade" onclick="process();"> 
+<button type =button onclick="process();">Calculate Grade</button>
+<button type="button" onclick="clearGrade();">Rest</button>
 <div id="leGrade"></div>
+</div>
 
 <!--Parameters and Vairables-->
+<div class="parameters">
 <p><h3>Parameters and Vairables</h3>
 ENTER DEGREE</p>
 <p><input id="c" onkeyup="convert('C')"> degrees Celsius</p>
 <p><input id="f" onkeyup="convert('F')"> degrees Fahrenheit</p>
 <br>
+</div>
 
 <!--Array-->
+<div class="array">
  <h3>Array</h3>
- <p>Please enter your name?</p>
- <p><input id="arrayInput"></p>
- <p><button type="button" onclick="array();">Submit</button></p>
- <p><textarea id="arrayDemo"></textarea></p><br>
+ <p>Add family friends's name and phone number</p>
+  Name:<input type="input" id="inputArray1">
+  Cell:<input type="input" id="inputArray2">
+<button type="button" onclick="array();">Add</button>
+<button type="button" onclick="clearArray();">Rest</button>
+ <div id="arrayDemo1"></div>
+ <div id="arrayDemo2"></div>
+<br>
+</div>
 
 <!--Associative Array-->
+<div class="assArray">
  <h3>Associative Array</h3>
- <p>Please enter your info then submit</p>
- <p><input id="input1" placeholder="Enter Name"></input></p>
- <p><input id="input2" placeholder="Enter Age"></input></p>
- <p><input id="input3" placeholder="Address"></input></p>
- <p><input id="input4" placeholder="State"></input></p>
- <p><input id="input5" placeholder="Zip Code"></input></p>
- <p><button type="button" onclick="asArray();">Submit</button>
-<p><textarea id="demo"></textarea></p>
+ <p>Would you like to know what computer do I use for school?<br>
+ Please type these options below</p>
+    <ul>
+    <li>Brand</li>
+    <li>Year</li>
+    <li>Software</li>
+    <li>Processor</li>
+    <li>Memory</li>
+    <li>Graphic</li>
+    </ul>
+    <input type="input" id="asArrayinput">
+    <button type="button" onclick="asArray();">Submit</button>
+ <div id="asArrayOutput"></div>
+ </div>
 </p>
 </p>
 </div>

@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>CIT 261 | JSON Parse</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="style/index.css" media="screen">
+
+<script type="text/javascript">
+
+function myList() {
+
+  var array = {
+    array2:"Makram",
+    array3:"student at BYU-I",
+    array4:"My favorrite scripture is in Psalm 50:15",
+    array5:'"And call upon me in the day of trouble: I will deliver thee, and thou shalt glorify"',
+  };
+
+  var string = JSON.stringify(array);
+  var object = JSON.parse(string);
+  
+  document.getElementById('outputList').innerHTML = "May name is " +object.array2 + " and I am a " + object.array3 + ". <br> " + object.array4 + " " + object.array5;
+}
+
+</script>
+</head>
+<body>
+  <header>
+<h1>CIT 261 Mobile Application-BYUI</h1>
+<ul>
+  <li><a href="index.html">Home</a></li>
+</ul>
+</header> 
+ <div class="mainPage">
+ <h2>JSON Parse, Stringify</h2>
+ <button type="button" onclick="myList();" >Show</button>
+ <h4>
+ <div id="outputList"></div>
+
+<br><br>
+</div>
+ <footer>&COPY; 2017 Makram Ibrahim </footer>
+</body>
+</html>
+</body>
+</html>
