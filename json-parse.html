@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>CIT 261 | JSON Parse and Stringify</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="index.css" media="screen">
+
+<script type="text/javascript">
+
+// assign a new variable to array
+var list = new Array();
+
+/****************************************
+* This program will display a combine outputs 
+* of local storage such as JSON and Parse.
+*****************************************/
+ 
+ function myList() {
+
+  // add to your list 
+    list.push(document.getElementById('input').value);
+
+   // clear after the input
+   document.getElementById('input').value = '';
+
+   // get array to display
+   document.getElementById('output1').innerHTML = list;
+
+   // display and stringify the array
+    list = JSON.stringify(list);
+    document.getElementById('output2').innerHTML = list;
+
+
+   // Dispay the parse array and get length of array
+    list = JSON.parse(list);
+
+   var output = '';
+   
+   for (var i = 0; i < list.length; i++) {
+   	output += list[i] + ', ';
+   }
+
+   document.getElementById('output3').innerHTML = output;
+}
+
+</script>
+</head>
+<body>
+  <header>
+<h1>CIT 261 Mobile Application-BYUI</h1>
+<ul>
+  <li><a href="index.html">Home</a></li>
+</ul>
+</header> 
+ <div class="mainPage">
+  <div class="content">
+ <h2>JSON Parse and Stringify</h2>
+ <h3>Please make list, using input box to add anything to the list</h3>
+ <!--prompt the user for input-->
+ <input type="input" id="input">
+ <button type="button" onclick="myList();" >Add List</button>
+ <h4>Your list has been created</h4>
+ <!--display the combine output-->
+ <div id="output1"></div>
+ <h4>Stringify List:</h4>
+ <div id="output2"></div>
+ <h4> Parse List </h4>
+ <div id="output3"></div>
+<br><br>
+</div>
+ </div>
+ <footer>&COPY; 2017 Makram Ibrahim </footer>
+</body>
+</html>
+</body>
+</html>

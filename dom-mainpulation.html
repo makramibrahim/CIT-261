@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>CIT 261 |DOM Manipulation createElement</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="index.css" media="screen">
+
+<script type="text/javascript">
+  
+/****************************************
+* This function will create appendChild
+* wiht an existing new ID
+*****************************************/
+function createParent() {
+    var parent = document.createElement('p');
+    var text = document.createTextNode('New Text');
+    parent.appendChild(text);
+    
+    var getElement = document.getElementById('child2');
+    
+    getElement.appendChild(parent);
+}
+    
+/****************************************
+* This function will removeChild
+* wiht an existing parent.
+*****************************************/
+function remove() {
+    var parent = document.getElementById('child2');
+     if (parent.hasChildNodes()) {
+         parent.removeChild(parent.childNodes[0]);
+     }
+}
+  
+</script>
+</head>
+<body>
+  <header>
+<h1>CIT 261 Mobile Application-BYUI</h1>
+<ul>
+  <li><a href="index.html">Home</a></li>
+</ul>
+ </header> 
+ <div class="mainPage">
+  <h2>DOM createElement, appendChild, insertBefore, removeChild</h2> 
+    <button type="button" onclick="createParent();">Create Element</button>
+    <button type="button" onclick="remove();">Remove Element</button><br>
+      <div id="parent">
+         <p id="child1">Text 1</p>
+         <p id="child2">Text 2</p>
+    <br><br>
+</div>
+ </div>
+ <footer>&COPY; 2017 Makram Ibrahim </footer>
+</body>
+</html>
+

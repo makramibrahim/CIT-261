@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>CIT 261 | Manipulating CSS Class</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="index.css" media="screen">
+	<style>
+		.content{
+			display: inline;
+		}
+		
+	</style>
+
+<script type="text/javascript">	
+/****************************************
+* This function will generate colors
+* using JS.
+*****************************************/
+function getColor(color) {
+    
+    document.body.style.background = color;
+    
+}
+	
+/****************************************
+* This function will generate colors
+* using JS.
+*****************************************/
+function getClassColor(color) {
+	var text = document.getElementsByClassName('colorClass');
+	text[0].style.background = color;
+}
+		
+</script>
+</head>
+<body>
+  <header>
+<h1 id="hefont">CIT 261 Mobile Application-BYUI</h1>
+<ul>
+  <li><a href="index.html">Home</a></li>
+</ul>
+ </header> 
+ <div class="mainPage">
+  <div class="colorClass">
+  <h2 id="font">Manipulating CSS Class Properties Using JavaScript:</h2>
+	 <!--call color function with different colors by button click-->
+  
+	 <div class="content">
+	  <button onclick="getColor('green')">Green</button>
+      <button onclick="getColor('red')">Red</button>
+      <button onclick="getColor('blue')">Blue</button>
+      <button onclick="getColor('yellow')">Yellow</button>
+         <br><br>
+    <!-- get font style by mainpulating js in the button-->
+    <h3>Font Style</h3>
+    <button onclick="document.getElementById('font').style.fontFamily = 'Comic Sans MS'">Font Style</button> 
+    <button onclick="getClassColor('lightblue');">Class Color</button>
+	<button onclick="document.getElementById('hefont').style.background ='wheat'">Header1</button>
+   <button onclick="document.getElementById('font').style.color ='red'">Header2</button> 
+   <br><br>
+   </div>     
+</div>
+ </div>
+ <footer>&COPY; 2017 Makram Ibrahim </footer>
+</body>
+</html>

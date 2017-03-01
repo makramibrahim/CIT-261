@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>CIT 261 | XMLHTTP Request</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="index.css" media="screen">
+
+<script type="text/javascript">
+
+// assign a new variable to array
+
+/****************************************
+* This function will get xml file by request
+* from html.
+*****************************************/	
+function listOfObject() {
+ var xmlList = new XMLHttpRequest();
+	xmlList.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			getFunction(this);
+		}
+	};
+	
+	xmlList.open("GET", "xmlhttp.xml", true);
+	xmlList.send();	
+}
+
+function getFunction(xml) {
+	var x, i, xmlDoc, txt;
+	xmlDoc = xml.responseXML;
+	txt = "";
+	x = xmlDoc.getElementsByTagName("root");
+	for (i = 0; i < x.length; i++) {
+		txt += x[i].childNodes[0].nodeValue + "<br>";
+	}
+	
+	document.getElementById('output').innerHTML = txt;
+} 
+
+function reset() {
+ document.getElementById('output').innerHTML = "";
+}
+	
+</script>
+</head>
+<body>
+  <header>
+<h1>CIT 261 Mobile Application-BYUI</h1>
+<ul>
+  <li><a href="index.html">Home</a></li>
+</ul>
+</header> 
+ <div class="mainPage">
+ <div class="content">
+  <h2>Using XMLHTTPRequest to Consume a JSON Web Service</h2>
+ <!--prompt the user for input-->
+<button type="button" onclick="listOfObject();">Get item list</button>
+<button type="button" onclick="reset();">Reset</button>
+	 <div id="output"></div>
+	  
+ <!--display the combine output-->
+	  
+<br><br>
+</div>
+ </div>
+ <footer>&COPY; 2017 Makram Ibrahim </footer>
+</body>
+</html>

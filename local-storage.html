@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>CIT 261 | Local Storage API</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="index.css" media="screen">
+
+<script type="text/javascript">
+/****************************************
+* This program will display a combine methods
+* of local storages.
+*****************************************/
+ function mylocalStorage() {
+
+  var pot = ["red pen", "green pen", "blue pen", "yellow pen"];
+
+  if (typeof(Storage) !== "undefined") {
+    // store data to local storage
+    localStorage.setItem("pot", JSON.stringify(pot));
+    // retrieve data
+    document.getElementById("output").innerHTML = localStorage.getItem("pot");
+
+  } else {
+    document.getElementById("output").innerHTML = "Sorry, the browser does not support web storage";
+  }
+}
+
+// assign a new variable to array
+var letter = new Array();
+/****************************************
+* This program will display an Associate Array 
+* of local storages.
+*****************************************/
+function getLetter() {
+  
+  letter = {
+    giftGiver: document.getElementById('giftGiver').value,
+    present:  document.getElementById('present').value,
+    yourAge:  document.getElementById('age').value,
+    yourName: document.getElementById('name').value,
+  };
+
+   if (typeof(Storage) !== "undefined") {
+      // store data to local storage
+    localStorage.setItem("letter", JSON.stringify(letter));
+    // retrieve data
+ document.getElementById("outputall").innerHTML = 
+ "Dear " + letter.giftGiver + ", " + "Thank you for the " +
+ letter.present + ", I really like it. I can't believe that I am already " + letter.yourAge + " years old." +  " <br>Sincerely,<br>" + letter.yourName;
+
+  } else {
+    document.getElementById("outputall").innerHTML = "Sorry, the browser does not support web storage"
+  }
+}
+
+/****************************************
+* This program will display a combine methods
+* of local storages.
+*****************************************/
+function retrieveLetter() {
+
+ var retrLetter = localStorage.getItem("letter", JSON.stringify(letter));
+  var letter = JSON.parse(retrLetter);
+
+document.getElementById("outputall").innerHTML = 
+ "Dear " + letter.giftGiver + ", " + "Thank you for the " +
+ letter.present + ", I really like it. I can't believe that I am already " + letter.yourAge + " years old." +  " <br>Sincerely,<br>" + letter.yourName;
+}
+
+
+var car = new Array(); 
+/****************************************
+* This program will display a combine methods
+* of local storages.
+*****************************************/
+function createObject() {
+
+  var inputArray = document.getElementById('inputArray').value;
+  
+  localStorage.setItem('car', JSON.stringify(inputArray));
+  
+  car.push(inputArray);
+  document.getElementById('inputArray').value = "";
+
+   for (var i = 0; i < car.length; i++){
+    car[i];
+ }
+
+  document.getElementById('outputCar').innerHTML = car;
+}
+
+/****************************************
+* This program will an object
+* of local storages.
+*****************************************/
+function retrieveObject() {
+
+ retrCar = localStorage.getItem("car", JSON.stringify(inputArray));
+ var car = JSON.parse(retrCar);
+
+document.getElementById("outputCar").innerHTML = car;
+}
+
+/****************************************
+* This program will display a combine methods
+* of local storages.
+*****************************************/
+function reset() {
+  document.getElementById("output").innerHTML = "";
+}
+
+</script>
+</head>
+<body>
+  <header>
+<h1>CIT 261 Mobile Application-BYUI</h1>
+<ul>
+  <li><a href="index.html">Home</a></li>
+</ul>
+</header> 
+ <div class="mainPage">
+  <div class="content">
+ <h2>Local Storage API, Storing and Retrieving Simple Data</h2>
+ <!--prompt the user for input-->
+ <button type="button" onclick="mylocalStorage();">Click</button>
+ <button type="button" onclick="reset();">Reset</button>
+ <h4>Retrieve Local Storages</h4>
+ <!--display the combine output-->
+ <div id="output"></div>
+
+ <h2> This is a think you letter for someone gave you a present on your birthday</h2>
+ <input type="input" id="giftGiver" placeholder="Gift giver's name:"><br>
+ <input type="input" id="present" placeholder="Present's name:"><br>
+ <input type="input" id="age" placeholder="Your age:"><br>
+ <input type="input" id="name" placeholder="Your name:"><br>
+ <button type="button" onclick="getLetter();">Submit</button>
+ <button type="button" onclick="retrieveLetter();">Retrieve</button>
+ <div id="outputall"></div><br>
+
+<h2>Object</h2>
+<h4>Type a list of your favorite cars</h4>
+ <input type="input" id="inputArray">
+ <button type="button" onclick="createObject();">Submit</button>
+ <button type="button" onclick="retrieveObject();">Retrieve</button>
+ <div id="outputCar"></div>
+
+<br><br>
+</div>
+ </div>
+ <footer>&COPY; 2017 Makram Ibrahim </footer>
+</body>
+</html>
+</body>
+</html>

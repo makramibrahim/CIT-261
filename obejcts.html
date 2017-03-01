@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>CIT 261 | Object Creation</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="index.css" media="screen">
+
+<script type="text/javascript">
+  
+/******************************************
+* This is a base function
+*******************************************/
+function basePerson(first, gender, age, eye, letter) {
+    this.firstName = first;
+    this.gender = gender;
+    this.age = age;
+    this.eyeColor = eye;
+    this.letter = letter;
+
+}
+// creat new arrays for each 
+var person = new basePerson();
+var parents = new basePerson();
+var pDetails = new basePerson();
+
+/******************************************
+* Ths function will inherite from the base
+*******************************************/
+function inheritance() {
+  person = {
+    firstName : document.getElementById('fName').value,
+    age       : document.getElementById('yage').value,
+    letter    : document.getElementById('letter').value,
+
+};
+  
+}
+
+/******************************************
+* THis function will inherite from base
+*******************************************/
+function parentsInfo() {
+ parents = {
+    fAge: document.getElementById('fAge').value,
+    mAge: document.getElementById('mAge').value,
+};
+
+}
+  
+/******************************************
+* THis function will inherite from the base
+*******************************************/
+function displayInfo() {
+  pDetails = {
+      gender: document.getElementById('gender').value,
+      eyeColor: document.getElementById('eColor').value,
+   };
+   
+    if (pDetails.gender === 'male' || pDetails.gender === 'Male'){
+ 
+     pDetails.gender = "You're a very nice Man!";
+    }
+    else {
+    pDetails.gender= "You're a very nice Girl!";
+    }
+
+    if (pDetails.eyeColor === 'Green' ||  pDetails.eyeColor === 'green' || pDetails.eyeColor ==='blue' 
+            || pDetails.eyeColor ==='Blue') {
+      pDetails.eyeColor = "You seem to have blonde hair!";
+    }
+    
+    else if ( pDetails.eyeColor === 'black' ||  pDetails.eyeColor === 'Black') {
+       pDetails.eyeColor = "You seem to have black hair!";
+    }
+
+    else {
+      pDetails.eyeColor = "You seem to have brown hair!";
+    }
+
+}
+
+/******************************************
+* THis function will save all the inputs
+*******************************************/
+function save() {
+  inheritance();
+  parentsInfo();
+  displayInfo();
+}
+
+/******************************************
+* THis function will inherite from the base
+*******************************************/
+function reset() {
+
+  document.getElementById('fName').value = null;
+  document.getElementById('yage').value = null;
+  document.getElementById('letter').value = null;
+  document.getElementById('fAge').value = null;
+  document.getElementById('mAge').value = null;
+  document.getElementById('gender').value = null;
+  document.getElementById('eColor').value = null;
+  document.getElementById('displayAll').innerHTML = null;
+}
+
+/******************************************
+* THis function will inherite from the base
+*******************************************/
+function displayAll() {
+
+document.getElementById('displayAll').innerHTML =  "Hi " + person.firstName + ". " + pDetails.gender + " " + pDetails.eyeColor + " <br> You said you're " + person.age + " years old. Do you know that your Mom was " + (parents.mAge - person.age) + "<br> and your Dad was " + (parents.fAge - person.age) + " years old when you were born. See we got to know more about you!" + "<br>"
++ "<br>" + "Your personal letter: " + person.letter;
+}
+
+</script>
+</head>
+<body>
+  <header>
+<h1>CIT 261 Mobile Application-BYUI </h1>
+<ul>
+  <li><a href="index.html">Home</a></li>
+</ul>
+</header> 
+ <div class="mainPage">
+ 
+<div class="content">
+ <h2>Object Creation Functions, Inheritance, Properties, Methods, and Instantation</h2>
+ <br><br>
+ <p>Please fill out your information</p>
+<input type="input" id="fName" placeholder="Name">
+<input type="input" id="yage" placeholder="Age"><br>
+<br>
+<textarea type="text" id="letter" placeholder="Personal Letter" size="30"></textarea><br>
+<br><br>
+
+<p>If you would like to see a surprise please add your parents's ages</p>
+ <input type="input" id="fAge" placeholder="Dad's age">
+ <input type="input"  id="mAge" placeholder="Mom's age"><br>
+ <br><br>
+
+ <h4>Let's us know more about you</h4>
+  <input type="input" id="gender" placeholder="Gender">
+  <input type="input" id="eColor" placeholder="Eye Color"><br>
+ <br><br>
+
+<h4>Here's your summary</h4>
+<button type="button" onclick="save();">Save</button>
+<button type="button" onclick="displayAll();">Load and Display</button>
+<button type="button" onclick="reset();">Reset</button>
+ <br>
+ <div id="displayAll"></div><br><br><br>
+ </div>
+
+</div>
+ <footer>&COPY; 2017 Makram Ibrahim </footer>
+</body>
+</html>

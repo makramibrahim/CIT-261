@@ -7,58 +7,129 @@ padding: 1em;
 color: white;
 text-align: center;
 border-radius: 25px;
+margin-bottom: -2em;
+
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+   color: white;
+   text-shadow: 2px 2px 2px black, 0 0 25px red, 10px 10px 15px blue;
+}
+
+html{
+ background-image:radial-gradient(blue,wheat);
+ margin: 2em;
+ text-align: center;
+}
+
 body{
-  background-image:radial-gradient(blue, wheat);
-  padding: 5em;
+ margin-right: auto;
+ margin-left: auto;
+ width: 800px;
+ padding: 2em;
 }
 
 .mainPage{
- text-align:left;
- padding: 4em;
- border: 2em solid lightblue;
- background-color: whitesmoke; 
- min-height: 100%;
- border-radius: 25px;
- 
+text-align:left;
+padding: 2em;
+background: wheat;
 }
 
 p{
- margin: 7em;
+margin: 2em;
 }
 
 ul li{
- text-decoration: none;
-  text-align: left;
+text-decoration: none;
+ text-align: left;
 }
 
-ul li a{
+a li{
  text-decoration: none;
-  text-align: left;
+ text-align: left;
+ outline: 0;
 }
-a{
- text-decoration: none;
-  text-align: left;
 
-}
+
 a:link {
-   color: black;
-   font-family: cursive;
-   font-size: 18px;
+  color: black;
+  font-family: cursive;
+  font-size: 18px;
+  text-decoration: none;
+  text-shadow: .5px .5px .1px;
 }
 
 a:visited {
-    color: black;
+   color: black;
+   text-decoration: none;
+
 }
 
 a:hover {
-    color: lightblue;
+   color: lightblue;
+   text-decoration: none;
 }
 
 footer{
- background-color: dodgerblue;
- color: white;
- text-align: center;
- padding: 1em;
- border-radius: 25px;
+background-color: dodgerblue;
+color: white;
+text-align: center;
+padding: 1em;
+border-radius: 25px;
+margin-top: -1em;
+text-shadow: 2px 2px 2px black, 0 0 25px red, 10px 10px 15px blue;
 }
+
+.forLoop{
+  display: inline-block;
+  padding: 2em;
+  margin-left: 2em; 
+ }
+
+ .whileLoop{
+  display: inline-block;
+  padding: 2em;
+ }
+
+.doLoop{
+  display: inline-block;
+  padding: 2em;
+  margin-left: 4em;
+ }
+
+.ifStatement{
+  display: inline-block;
+  padding: 2em;
+ }
+
+.parameters{
+  display: inline-block;
+  padding: 2em;
+  margin-left: 8em;
+  
+}
+
+.array{
+  display: inline-block;
+  padding: 2em;
+  margin-left: 8em;
+}
+
+.assArray{
+  display: inline-block;
+  padding: 2em;
+  margin-left: 8em;
+}
+
+.content{
+  display: inline-block;
+  padding: 5em;
+  margin-left: 6em; 
+ }
+
