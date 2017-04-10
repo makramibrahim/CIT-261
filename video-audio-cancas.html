@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>CIT 261 | Cancas</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script type="text/javascript" src="javasc.js/canvasjs.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="index.css" media="screen">
+   <style type="text/css">
+    
+    </style>
+ <script type="text/javascript">
+          
+/************************************
+* Get the first day of the month
+* date based on dates
+*************************************/
+function getFirstDayOfMonth(month, year) {
+    return new Date(year, month, 0).getDate();
+}
+     
+/************************************
+* Get the first week of the Month 
+* and return all days.
+*************************************/
+function getFirstWeekOfMonth(month, year) {
+    return new Date(year, month, 1).getDay();
+}
+
+ /************************************
+* Get the first week of the Month 
+* and return all days.
+*************************************/    
+function getLastWeekOfMonth(month, year, countDay) {
+  var date = new Date(year, month, countDay);   
+  var weekday = date.getDay(); 
+  return (6 - (weekday));
+}
+
+/************************************
+* DisplayTable function  will 
+* fill columns and rows for each output. 
+*************************************/    
+function displayTable(month, year){
+  var monthname = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var countDay = getFirstDayOfMonth(month, year);
+  var ofDays = getFirstWeekOfMonth(month - 1, year);
+  var postdays = getLastWeekOfMonth(month - 1, year, countDay);
+  var getOutPut = '<div id="calendarwrap">';
+  getOutPut += '<div class="titlebar">';
+  getOutPut += '<button class="previousmonth" id="prev" onclick="lastMonth()">Previous</button>';
+    
+  getOutPut += '<div class="getMonth">' + monthname[month] + ' ' + year + '</div>';
+  getOutPut += '<button class="nextMonth" id="next" onclick="nextMonth()">Next</button>';
+  getOutPut += '</div>';
+  getOutPut += '<div class="weekdays">';
+  getOutPut += '<div class="daysWeek">Sun</div>';
+  getOutPut += '<div class="daysWeek">Mon</div>';
+  getOutPut += '<div class="daysWeek">Tue</div>';
+  getOutPut += '<div class="daysWeek">Wed</div>';
+  getOutPut += '<div class="daysWeek">Thur</div>';
+  getOutPut += '<div class="daysWeek">Fri</div>';
+  getOutPut += '<div class="daysWeek">Sat</div>';
+  getOutPut += '<div class="clear"></div>';
+  getOutPut += '</div>';
+  
+    //Previous Month Fill up Days
+  if ( ofDays != 0 ) {
+      for(var i = 1; i <= ofDays; i++) {
+          getOutPut += '<div class="nonCalday"></div>';   
+      }
+  }
+
+//Current Month
+ for(var i=1; i<=countDay; i++) {
+      getOutPut += '<div class="calday" dayDate=' + month + '/' + i + '/' + year + '>';
+      getOutPut += '<div class="dayheading">' + i + '</div>';
+      getOutPut += '</div>';
+  }
+
+  if ( postdays != 0 ) {
+      for(var i = 1; i <= postdays; i++) {
+          getOutPut += '<div class="nonCalday"></div>';   
+      }
+  }
+
+  getOutPut += '</div>'; 
+  return getOutPut;
+}
+     
+/************************************
+* Calnedar function will get currnet time
+* and date for the current month and year.
+*************************************/  
+function calend(){
+  var currentTime = new Date();
+  var month = currentTime.getMonth() + 1;
+  var year = currentTime.getFullYear();
+  getMonth = month;
+  getYear = year;
+  var getOutPut = displayTable(getMonth, getYear);
+ document.getElementById("calendar").innerHTML = getOutPut;
+  
+  caldays = document.querySelectorAll('div.calday');
+  for (var i = 0 ; i < caldays.length; i++){
+  caldays[i].addEventListener("click", func);
+  }
+
+/************************************
+* Mark out the current day with 
+* red color box
+*************************************/  
+    function func(){
+        var d = new Date();
+        var n = d.getDate();
+            document.styleSheets.color = "red";
+        }  
+  }
+
+/************************************
+* NextMonth function will disply each month
+* if month passed the 12th month get a new 
+* year to display.
+*************************************/       
+function nextMonth(){
+  var nextMonth = getMonth + 1;
+    if(nextMonth > 12){
+        nextMonth = 1;
+        getYear = getYear + 1;
+    }
+  getMonth = nextMonth;
+  var getOutPut = displayTable(getMonth, getYear);
+    document.getElementById("calendar").innerHTML = getOutPut;
+}
+
+/************************************
+* LastMonth function will disply previous month.
+* if previous month less than month 1 get previous 
+* year to display.
+*************************************/
+function lastMonth(){
+  var lastMonth = getMonth - 1;
+    if(lastMonth < 1){
+        lastMonth = 12;
+        getYear = getYear - 1;
+    }
+  getMonth = lastMonth;
+  var getOutPut = displayTable(getMonth, getYear);
+  document.getElementById("calendar").innerHTML = getOutPut;
+}
+ window.addEventListener("load", calend);
+function _(id) {
+  return document.getElementById(id); 
+    
+}
+    
+  </script>
+   
+    </head>
+    <body>
+      <header>
+    <h1>CIT 261 Mobile Application-BYUI</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+     </header> 
+     <div class="mainPage">
+   <h2>HTML5 Tags, Video, Audio, and Canvas</h2>
+   
+        <h3>Video Exampel:</h3>
+        <p>A New Version of Mario Game</p>
+		<video width="70%" height="70%" controls>
+		<source src="video/SuperMario.mp4" type="video/mp4">
+        </video><br>
+        
+        <h3>Audio Exampel: 1</h3>
+		<p>Don't Go Far Song</p>
+		<audio controls>
+		<source src="audio/SummerMinutes1.mp3" type="audio/mpeg">
+		</audio>
+		<p>Hello It's Me Song</p>
+		<audio controls>
+		<source src="audio/SummerMinutes3.mp3" type="audio/ogg">
+		</audio>
+		<p>Light Up Song</p>
+		<audio controls>
+		<source src="audio/SummerMinutes2.mp3" type="audio/ogg">
+		</audio><br>
+
+    <hr>
+    <h3>Calendar Year</h3><br>
+    <div id="calendar"></div><br><hr>
+
+  
+   <!--================= Chart ==============-->
+   
+   <h2>Please change the chart percenatge as you wish</h2>
+    
+     <canvas id="canvas1" width="420" height="200" style="border:1px solid #c3c3c3">
+     
+    </canvas><br>
+    
+  <select id="col1" onchange="col1()">
+      <option value="195">0%</option>
+      <option value="150">20%</option>
+      <option value="120">40%</option>
+      <option value="80">60%</option>
+      <option value="40">80%</option>
+      <option value="10">100%</option>
+  </select>
+  
+    <select id="col2" onchange="col1()">
+      <option value="195">0%</option>
+      <option value="150">20%</option>
+      <option value="120">40%</option>
+      <option value="80">60%</option>
+      <option value="40">80%</option>
+      <option value="10">100%</option>
+  </select>
+    
+  <select id="col3" onchange="col1()">
+      <option value="195">0%</option>
+      <option value="150">20%</option>
+      <option value="120">40%</option>
+      <option value="80">60%</option>
+      <option value="40">80%</option>
+      <option value="10">100%</option>
+  </select>
+  
+  <select id="col4" onchange="col1()">
+      <option value="195">0%</option>
+      <option value="150">20%</option>
+      <option value="120">40%</option>
+      <option value="80">60%</option>
+      <option value="40">80%</option>
+      <option value="10">100%</option>
+  </select>
+  
+  
+  <select id="col5" onchange="col1()">
+      <option value="195">0%</option>
+      <option value="150">20%</option>
+      <option value="120">40%</option>
+      <option value="80">60%</option>
+      <option value="40">80%</option>
+      <option value="10">100%</option>
+  </select>
+  
+  
+  <select id="col6" onchange="col1()">
+      <option value="195">0%</option>
+      <option value="150">20%</option>
+      <option value="120">40%</option>
+      <option value="80">60%</option>
+      <option value="40">80%</option>
+      <option value="10">100%</option>
+  </select>
+  
+  <select id="col7" onchange="col1()">
+      <option value="195">0%</option>
+      <option value="150">20%</option>
+      <option value="120">40%</option>
+      <option value="80">60%</option>
+      <option value="40">80%</option>
+      <option value="10">100%</option>
+  </select><br>
+   <h6>Google &nbsp; &nbsp; &nbsp; &nbsp;Apple
+   &nbsp; &nbsp; &nbsp; &nbsp;Yahoo
+   &nbsp; &nbsp;FaceBook
+   &nbsp; &nbsp; &nbsp;eBay
+   &nbsp; &nbsp; &nbsp;Amazon
+   &nbsp; &nbsp;Ali-Baba</h6>
+
+   <script>
+/*******************************************
+* Draw a simple chart
+********************************************/ 
+    var canvas = document.getElementById("canvas1");
+    var x = canvas.getContext("2d");
+    var bgColor = '#8F897F';
+       
+       function getFactor(num) {
+           var inner = 2;
+           return function innnerFunct() {
+               console.log(num * inner);
+           }
+       }
+       
+       var fourFunc = getFactor(2)
+       console.log(fourFunc())
+       var sixFunc = getFactor(3);
+       
+       console.log(sixFunc())
+    
+function col1() {
+    
+    var x1 = document.getElementById("col1").value;
+    var x2 = document.getElementById("col2").value;
+    var x3 = document.getElementById("col3").value;
+    var x4 = document.getElementById("col4").value;
+    var x5 = document.getElementById("col5").value;
+    var x6 = document.getElementById("col6").value;
+    var x7 = document.getElementById("col7").value;
+     
+    
+    
+    x.clearRect(0, 0, 420, 200);
+
+    x.fillStyle = "#1D2ADA";   
+    x.fillRect(1, x1, 55, 200);
+
+    x.fillStyle = "#FF0000"; 
+    x.fillRect(60, x2, 55, 200);
+
+    x.fillStyle = "#1D2ADA";   
+    x.fillRect(120, x3, 55, 200);
+    
+    x.fillStyle = "#FF0000";
+    x.fillRect(180, x4, 55, 200);
+    
+    x.fillStyle = "#1D2ADA";
+    x.fillRect(240, x5, 55, 200);
+    
+    x.fillStyle = "#FF0000"; 
+    x.fillRect(300, x6, 55, 200);
+    
+    x.fillStyle = "#1D2ADA";
+    x.fillRect(360, x7, 55, 200);  
+}
+
+</script>
+
+
+<hr><br>
+
+<canvas id="canvas2" width="400" height="100" style="border:1px solid #d3d3d3;">
+</canvas>
+
+<script>
+/*******************************
+* Draw two circles
+********************************/
+var c = document.getElementById("canvas2");
+var ctx = c.getContext("2d");
+ctx.fillStyle = "#1D2ADA";
+ctx.beginPath();
+ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+ 
+ctx.arc(195, 50, 40, 0, 10 * Math.PI);
+ctx.arc(195, 50, 40, 0, 10 * Math.PI);
+ctx.fillText("Left", 80, 40, 200);
+ctx.fillText("Right", 180, 40, 200);
+        
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(100, 60, 25, 0, 2 * Math.PI);   
+        
+ctx.moveTo(55,50,0);
+ctx.lineTo(200,50,200);
+ctx.stroke();
+</script>
+
+<hr>
+
+<input type="range" id="range" min="0" max="100" value="100" />
+<canvas id="canvas3" width="400" height="400"></canvas>
+ <script>
+/************************************
+*Declare the half width, hight by dividing
+* the raduis with 2 each. 
+*************************************/    
+var canvas = document.getElementById('canvas3');
+  ctx = canvas.getContext('2d');
+  halfW = canvas.width / 2;
+  halfH = canvas.height / 2;
+  range = document.getElementById('range');
+  bColor = "#1D2ADA"; 
+
+ctx.lineWidth = 10;
+ctx.lineCap = 'round';
+ctx.textAlign = 'center';
+
+ctx.translate(halfW, halfH);
+ctx.rotate((-1 / 2) * Math.PI);
+ctx.translate(-halfW, -halfH);
+
+
+ctx.beginPath();
+ctx.strokeStyle = "#FF0000";
+ctx.arc(halfW, halfH, 150, 0, Math.PI * 2, false);
+ctx.stroke();
+     
+/************************************
+* Draw a circle that has a start point
+* to count the raduis all way till the 
+* stop point with percentage mark.
+*************************************/
+function draw() {
+  ctx.clearRect(0, 0, 400, 400);
+  ctx.beginPath();
+  ctx.strokeStyle = "#FF0000";
+  ctx.arc(halfW, halfH, 150, 0, Math.PI * 2, false);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.strokeStyle = bColor;
+  ctx.arc(halfW, halfH, 150, Math.PI * 2 * (range.value * 0.01), false);
+  update();
+  ctx.stroke();
+}
+
+/************************************
+* Increase the rotate of the half width
+* by multiplying it by math.PI
+*************************************/
+function update() {
+
+  ctx.save();
+  ctx.translate(halfW, halfH);
+  ctx.rotate((1 / 2) * Math.PI);
+  ctx.translate(-halfW, -halfH);
+  ctx.fillText(range.value + '%', halfW, halfH);
+  ctx.restore();
+}
+setTimeout(draw);
+range.addEventListener('input', draw);
+</script>
+
+</div>
+ <footer>&COPY; 2017 Makram Ibrahim </footer>
+</body>
+</html>
+

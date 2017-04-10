@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>CIT 261 | JS Mobile Events</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="index.css" media="screen"> 
+<style>
+    
+    
+    
+    #box{
+        width: 300px;
+        height:50px;
+        border-radius: 25px;
+        background-color: blue;
+        margin: auto;
+        transition-duration: 2s;
+        animation-name: example;
+        position: relative; 
+    }
+ 
+   	#div1{
+			width: 100px;
+			height: 100px;
+			background: blue;
+		}
+
+        @keyframes example {
+            0% {background-color: red; left:0px; top: 0px;}
+            25% {background-color: blue; left:200px; top: 0px;}
+            50% {background-color: yellow; left:200px; top: 200px;}
+            75% {background-color: green; left:0px; top: 200px;}
+            100% {background-color: red; left:0px; top: 0px;}
+        }
+        
+</style>
+
+<script type="text/javascript">
+  
+/****************************************
+* This function will make a transition using css
+* trigged by JS.
+*****************************************/
+function event1() {
+    alert("Welcome to JS Moblie Events");
+    document.getElementById('clickMe').innerHTML = "Click here" +"<br>" + "to receive a Welcome message!";
+
+}
+    
+/****************************************
+* This function will display alert message
+* every time the page loads
+*****************************************/
+function bigEvent(x) {
+    x.style.height = "250px";
+    x.style.width = "400px";
+}
+    
+function normalEvent(x) {
+    x.style.height = "100px";
+    x.style.width = "100px";
+    
+}
+    
+    
+ /****************************************
+* Event3 function will pop a message on click 
+*****************************************/
+function event3() {
+    
+    document.getElementById('onclick').innerHTML = "You clicked on the red element!";
+
+}
+   
+   
+/****************************************
+* Even4 function will generate random 
+* color every time you change the input.
+*****************************************/
+function event4(element) {
+    var random = Math.floor((Math.random() * 60) + 1);
+
+			if (random < 20){
+				var color = "red";
+			}
+			else if (random < 30){
+				var color = "green";
+			}
+			else if (random < 40){
+				var color = "pink";
+			}
+			else if (random < 50){
+				var color = "yellow";
+			}
+			else if (random < 60){
+				var color = "blue";
+			}
+			var element = document.getElementById(element);
+			
+			element.style.transition = "width 1s linear 0s, background 1s linear 0s";
+			element.style.background = color;
+}
+
+    
+/****************************************
+* Function event5 will create a transition element
+* Every time you touch the screen.
+*****************************************/
+function event5(elemtn, color) {
+    
+    var element = document.getElementById(element);
+    element.style.transition = "width 1s linear 0s, background 1s linear 0s";
+    element.style.background = color;
+}
+    
+ </script>
+    </head>
+    <body onload="event1()">
+      <header>
+    <h1>CIT 261 Mobile Application-BYUI</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+     </header>
+ <div class="mainPage">
+     <h2>JavaScript Events For Mobile Devices onTouchStart and onLoad </h2>
+     <!--======On Load Event======-->
+     <h3>onLoad Example</h3>
+     <h4>I hope you got a warm welcome from Mobile Events</h4>
+     <div id="clickMe" onclick="event1()" style="width:300px; height:50px; background:gray; color:white; text-align:center; border-radius:25px;"></div><br><hr>
+     
+      <!--======On Mouse Over Event======-->
+     <h3>onMouseOver Example</h3>
+     <img onmouseover="bigEvent(this)" onmouseout="normalEvent(this)" border="0" src="images/smiley.png" alt="smiley face" width="100px" height="100px"> <br><hr>
+     
+      <!--======On click Event======-->
+     <h3>onClick Example</h3>
+     <div id="onclick" onclick="event3()" style="width:300px; height:50px; background:red; color:white; text-align:center; border-radius:25px;"></div><br><hr>
+     
+      <!--======On key down Event======-->
+      <h3>onKeyDown Example</h3>
+      <p>Put any number to change clolrs!
+		<input style="text-align:center" type="text" onkeydown="event4('box')" size="4" border="2"></p>
+		<div id="box" style="margin-left:5px; background-color:yellow"></div><br><hr>
+       
+       <!--======On TouchStart======-->
+      <h3>onTochStart</h3>
+       <p>Touch the box using a tablet or phone color</p>
+      <div id="box" onclick="event5('box', 'yellow')" ontouchstart="event5('box','gray')" style="margin-left:5px; background-color:green"></div>
+        
+
+        
+     </div>  
+ <footer>&COPY; 2017 Makram Ibrahim </footer>
+</body>
+</html>
+

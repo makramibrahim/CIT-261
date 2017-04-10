@@ -10,12 +10,27 @@
 
 // assign a new variable to array
 var list = new Array();
+    
+/****************************************
+* Local storage fucntion will display some 
+* text on the screen and every time you increase
+* the item by simply clicking on the button. 
+*****************************************/
+function locStorage() {
+    if(typeof(Storage) !== "undefined") {
+        if (localStorage.clickcount) {
+            localStorage.clickcount = Number(localStorage.clickcount)+1;
+        } else {
+            localStorage.clickcount = 1;
+        }
+        document.getElementById("outPutStorage").innerHTML = "You have added " + localStorage.clickcount + " items until now.";
+    }
+}
 
 /****************************************
 * This program will display a combine outputs 
 * of local storage such as JSON and Parse.
 *****************************************/
- 
  function myList() {
 
   // add to your list 
@@ -38,40 +53,47 @@ var list = new Array();
    var output = '';
    
    for (var i = 0; i < list.length; i++) {
-   	output += list[i] + ', ';
+   	output += list[i] + "<br>";
    }
 
    document.getElementById('output3').innerHTML = output;
+    locStorage();
+    
 }
-
+    
+function reset() {
+    location.reload();
+}
+    
 </script>
 </head>
 <body>
   <header>
-<h1>CIT 261 Mobile Application-BYUI</h1>
-<ul>
-  <li><a href="index.html">Home</a></li>
-</ul>
-</header> 
- <div class="mainPage">
-  <div class="content">
- <h2>JSON Parse and Stringify</h2>
- <h3>Please make list, using input box to add anything to the list</h3>
- <!--prompt the user for input-->
- <input type="input" id="input">
- <button type="button" onclick="myList();" >Add List</button>
- <h4>Your list has been created</h4>
- <!--display the combine output-->
- <div id="output1"></div>
- <h4>Stringify List:</h4>
- <div id="output2"></div>
- <h4> Parse List </h4>
- <div id="output3"></div>
-<br><br>
-</div>
- </div>
- <footer>&COPY; 2017 Makram Ibrahim </footer>
-</body>
-</html>
-</body>
+      <h1>CIT 261 Mobile Application-BYUI</h1>
+      <ul>
+    <li><a href="index.html">Home</a></li>
+      </ul>
+    </header> 
+        <div class="mainPage">
+        <div class="content">
+            <h2>JSON Parse and Stringify</h2>
+        <h3>Please make list, using input box to add anything to the list</h3> <br>
+            <p>We count every item you add to the list</p>
+             <p id="outPutStorage"></p>
+        <!--prompt the user for input-->
+            <input type="input" id="input">
+            <button type="button" onclick="myList();" >Add List</button>
+            <button type="button" onclick="reset();" >Reset</button>
+            
+        <h4>Your list has been created</h4>
+        <!--display the combine output-->
+            <div id="output1"></div>
+            <h4>Stringify List:</h4>    
+            <div id="output2"></div>
+            <h4> Parse List </h4>
+            <div id="output3"></div>
+            </div>
+    </div>
+    <footer>&COPY; 2017 Makram Ibrahim </footer>
+    </body>
 </html>

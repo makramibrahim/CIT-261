@@ -6,42 +6,133 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" type="text/css" href="index.css" media="screen">
 
+<style>
+    .hide-me {
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(.75);
+</style>
 <script type="text/javascript">
 
-// assign a new variable to array
+/****************************************
+* This function will display a xml file by
+* by using xmlhttp request from the server. 
+*****************************************/  
+function listOfObject() {
+    var countryHttp = new XMLHttpRequest();
+        countryHttp.onreadystatechange = function (){
+        if (countryHttp.readyState == 4 && countryHttp.status == 200){
+         var city = JSON.parse(this.responseText);
+         getObjectRsponse(city);
+        }
+        }
+    var input = document.getElementById('objectInput').value;
+    countryHttp.open("GET", "citylist/" + input + ".txt", true);
+    countryHttp.send();
+}
+    
+ /****************************************
+* This getFunction will get each file on the
+* client's demand.
+*****************************************/     
+function getObjectRsponse(city){
+    var output = "";
+    for (var i = 0; i < city.length; i++){
+        output += city[i] + "<hr>";
+    }
+    document.getElementById('objectOutput').innerHTML = output;
+}
+    
 
 /****************************************
-* This function will get xml file by request
-* from html.
-*****************************************/	
-function listOfObject() {
- var xmlList = new XMLHttpRequest();
-	xmlList.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			getFunction(this);
-		}
-	};
-	
-	xmlList.open("GET", "xmlhttp.xml", true);
-	xmlList.send();	
+* This function will display a xml file by
+* by using xmlhttp request from the server. 
+*****************************************/  
+function listOfObject2() {   
+    var studentHttp = new XMLHttpRequest();
+        studentHttp.onreadystatechange = function (){
+        if (studentHttp.readyState == 4 && studentHttp.status == 200){
+         var data = JSON.parse(this.responseText);
+         getObjectRsponse2(data);   
+            
+        }
+        }
+        
+    var input2 = document.getElementById('objectInput2').value;
+    studentHttp.open("GET", "jsonTxt/" + input2);
+    studentHttp.send(null); 
 }
 
-function getFunction(xml) {
-	var x, i, xmlDoc, txt;
-	xmlDoc = xml.responseXML;
-	txt = "";
-	x = xmlDoc.getElementsByTagName("root");
-	for (i = 0; i < x.length; i++) {
-		txt += x[i].childNodes[0].nodeValue + "<br>";
-	}
-	
-	document.getElementById('output').innerHTML = txt;
-} 
+/****************************************
+* This getFunction will get each file on the
+* client's demand.
+*****************************************/     
+function getObjectRsponse2(data){
+    
+    var output2 = "";
+    for (var i = 0; i < data.students.length; i++){
+        
+         output2 += data.students[i].first + " ";
+         output2 += data.students[i].last + " " + "<br>";
+        
+         output2 += data.students[i].address.city + " " + "<br>";
+         output2 += data.students[i].address.state + " " + "<br>";
+         output2 += data.students[i].address.zip + " " + "<br>";
+         output2 += data.students[i].major + " " + "<br>";
+        
+         output2 += data.students[i].gpa + " <br>" + "<hr>";
+    
+    }
+    document.getElementById('objectOutput2').innerHTML = output2;
 
+}
+
+/****************************************
+* This function will display a xml file by
+* by using xmlhttp request from the server. 
+*****************************************/  
+function listOfObject3() {   
+    var animalHttp = new XMLHttpRequest();
+       animalHttp.onreadystatechange = function (){
+        if (animalHttp.readyState == 4 && animalHttp.status == 200){
+         var data = JSON.parse(this.responseText);
+         getObjectRsponse3(data);   
+            
+        }
+        }
+        
+    var input2 = document.getElementById('objectInput3').value;
+   animalHttp.open("GET","https://learnwebcode.github.io/json-example/animals-" + input2);
+    animalHttp.send(null);  
+}
+
+/****************************************
+* This getFunction will get each file on the
+* client's demand.
+*****************************************/     
+function getObjectRsponse3(data){
+    
+    var output2 = "";
+    for (var i = 0; i < data.length; i++){
+        
+         output2 += "<p>" + data[i].name + " " + data[i].species;   
+    
+    }
+    document.getElementById('objectOutput3').innerHTML = output2;
+}
+    
+    
+/****************************************
+* The reset function will clear all the 
+* displayed data
+*****************************************/        
 function reset() {
- document.getElementById('output').innerHTML = "";
+     document.getElementById('objectOutput').innerHTML = "";
 }
-	
+function reset2() {
+    document.getElementById('objectOutput2').innerHTML = "";
+}
+    
 </script>
 </head>
 <body>
@@ -52,18 +143,47 @@ function reset() {
 </ul>
 </header> 
  <div class="mainPage">
- <div class="content">
   <h2>Using XMLHTTPRequest to Consume a JSON Web Service</h2>
- <!--prompt the user for input-->
-<button type="button" onclick="listOfObject();">Get item list</button>
-<button type="button" onclick="reset();">Reset</button>
-	 <div id="output"></div>
-	  
- <!--display the combine output-->
-	  
+  <hr><br>
+  
+ <!--select a value from the drop down list-->
+  <h2>Please select a city from the drop-down list:</h2>
+   <select id="objectInput" onchange="listOfObject()">
+                  <!-- onchange="listOfObject()"-->
+                    <option value="select">Select</option>
+                    <option value="usa">USA</option>
+                    <option value="canada">CANADA</option>
+                    <option value="russia">RUSSIA</option>
+                    <option value="mexico">MEXICO</option>
+</select>
+<button  type="button" onclick="reset()">Reset</button>
+<h3>The largest cities and their respective populations:</h3>
+<div id="objectOutput"></div><br><hr><br>
+
+<!--display the student-->    
+  <h2>Students<br>
+ Please enter the file name(json.txt or json1.txt):</h2>
+                      
+ <!--input file name-->
+    <input name="fileInput" onBlur="validateFileName(this.value)" id="objectInput2" value="json.txt" size="15">
+    <button onClick="listOfObject2()">Parse JSON</button>             
+   <button onClick="reset2()">Reset JSON</button>
+    <h3>Student Data:</h3>
+     <div id="objectOutput2" style="margin:1em; width:600px"></div>
+                
 <br><br>
+    
+      <!--Get animals file from the server-->   
+      <h2>Animals<br>
+         Please enter the file name(1.json, 2.json and 3.json):</h2>           
+        <!--input file name-->
+                <input name="fileInput" id="objectInput3" value="1.json" size="15">
+                <button onClick="listOfObject3()">Parse JSON</button>
+                <button onClick="reset2()">Reset JSON</button>
+                <h3>URL Data:</h3>
+         <div id="objectOutput3" style="margin:1em; width:600px"></div>
+      <br><br>
 </div>
- </div>
  <footer>&COPY; 2017 Makram Ibrahim </footer>
 </body>
 </html>

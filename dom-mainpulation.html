@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>CIT 261 |DOM Manipulation createElement</title>
+ <title>CIT 261 | DOM Manipulation createElement</title>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" type="text/css" href="index.css" media="screen">
@@ -32,6 +32,83 @@ function remove() {
          parent.removeChild(parent.childNodes[0]);
      }
 }
+    
+/****************************************
+* CreateList function will insertBefore and 
+* removeChild from list created it. 
+*****************************************/
+function createList(){
+    
+    document.getElementById('outPut').innerHTML =
+        "<p>Start shopping by Adding each item in the list!</p>";
+    var btn1 = document.createElement("BUTTON");
+    var t = document.createTextNode("Soda");
+    btn1.appendChild(t);
+    btn1.addEventListener ("click", function() {
+        var newItem = document.createElement("LI");
+        var textnode = document.createTextNode("Sugar");
+        newItem.appendChild(textnode);
+        var list = document.getElementById("createList");
+        list.insertBefore(newItem, list.childNodes[0]);
+    });
+    var btn2 = document.createElement("input");
+    btn2.type = "button";
+    btn2.value = "Milk";
+    btn2.addEventListener ("click", function() {
+        var newItem = document.createElement("LI");
+        var textnode = document.createTextNode("Milk");
+        newItem.appendChild(textnode);
+        
+        var list = document.getElementById("createList");
+        list.insertBefore(newItem, list.childNodes[0]);
+    });
+    var btn3 = document.createElement("input");
+    btn3.type = "button";
+    btn3.value = "Apple";
+    btn3.addEventListener ("click", function() {
+        var newItem = document.createElement("LI");
+        var textnode = document.createTextNode("Apple");
+        newItem.appendChild(textnode);
+        
+        var list = document.getElementById("createList");
+        list.insertBefore(newItem, list.childNodes[0]);
+    });
+    
+    var btn4 = document.createElement("input");
+    btn4.type = "button";
+    btn4.value = "Meat";
+    btn4.addEventListener ("click", function() {
+        var newItem = document.createElement("LI");
+        var textnode = document.createTextNode("Meat");
+        newItem.appendChild(textnode);
+        
+        var list = document.getElementById("createList");
+        list.insertBefore(newItem, list.childNodes[0]);
+    });
+    var btn5 = document.createElement("input");
+    btn5.type = "button";
+    btn5.value = "Remove Last Item";
+    btn5.addEventListener ("click", function() {
+        var list = document.getElementById("createList");
+        list.removeChild(list.childNodes[0]);
+    });
+    document.getElementById('getBtn').appendChild(btn1);
+    document.getElementById('getBtn').appendChild(btn2);
+    document.getElementById('getBtn').appendChild(btn3);
+    document.getElementById('getBtn').appendChild(btn4);
+    document.getElementById('getBtn').appendChild(btn5);
+}		
+			    
+/****************************************
+* This function will removeChild
+* wiht an existing parent.
+*****************************************/
+function remove() {
+    var parent = document.getElementById('child2');
+     if (parent.hasChildNodes()) {
+         parent.removeChild(parent.childNodes[0]);
+     }
+}
   
 </script>
 </head>
@@ -43,13 +120,27 @@ function remove() {
 </ul>
  </header> 
  <div class="mainPage">
-  <h2>DOM createElement, appendChild, insertBefore, removeChild</h2> 
+  <h2>DOM createElement, appendChild, insertBefore, removeChild</h2><br/>
+     
+     <h3>CreateElement and AppendChild </h3>
     <button type="button" onclick="createParent();">Create Element</button>
     <button type="button" onclick="remove();">Remove Element</button><br>
       <div id="parent">
          <p id="child1">Text 1</p>
          <p id="child2">Text 2</p>
-    <br><br>
+    <br><br><hr>
+          
+		<h3>InsertBefore and RemoveChild</h3>
+		<div id="outPut">
+		<button onclick="createList()">Grocery Shopping</button>
+		</div>
+		<div id="getBtn"></div>
+		<br/>
+		<ul id="createList">	
+		</ul>
+          
+    <!-- Create another element here -->
+
 </div>
  </div>
  <footer>&COPY; 2017 Makram Ibrahim </footer>

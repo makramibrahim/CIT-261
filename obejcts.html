@@ -7,151 +7,193 @@
  <link rel="stylesheet" type="text/css" href="index.css" media="screen">
 
 <script type="text/javascript">
-  
+var person = 0;
+var person1;
+var person2;
+var person3;
+var person4;
+var select;
 /******************************************
-* This is a base function
+* Create object function will let the user 
+* have the choice to create an index of objects 
 *******************************************/
-function basePerson(first, gender, age, eye, letter) {
-    this.firstName = first;
-    this.gender = gender;
-    this.age = age;
-    this.eyeColor = eye;
-    this.letter = letter;
-
-}
-// creat new arrays for each 
-var person = new basePerson();
-var parents = new basePerson();
-var pDetails = new basePerson();
-
-/******************************************
-* Ths function will inherite from the base
-*******************************************/
-function inheritance() {
-  person = {
-    firstName : document.getElementById('fName').value,
-    age       : document.getElementById('yage').value,
-    letter    : document.getElementById('letter').value,
-
-};
-  
+function createObject(){
+    var toy = new Object();
+    this.color = document.myForm.color.value;
+    this.size  = document.getElementById("size").value;
+    this.isGood = document.getElementById("good").value;
+    this.play = function(){
+        this.status = "playing";
+    }
+    document.getElementById("displayObject").innerHTML = "Your toy is " + this.size + " and " + this.color + ". I like it (" + this.isGood + ").";
 }
 
-/******************************************
-* THis function will inherite from base
-*******************************************/
-function parentsInfo() {
- parents = {
-    fAge: document.getElementById('fAge').value,
-    mAge: document.getElementById('mAge').value,
-};
 
+/******************************************
+* Create another function that lets the user 
+* to have the choice to create a person.
+*******************************************/
+function Parents() {
+    this.name = document.getElementById('name').value;
+    this.gender = document.getElementById('gender').value;
+    this.age = document.getElementById('age').value;
+    this.profile =	function() { 
+        return  "Name: " + this.name + "<br>" + 
+            "Gender: " + this.gender + "<br>" + 
+            "Age: " + this.age + "<br>" + 			
+            "Hobby: " + this.hobby + "<br>";
+    }
+    this.changeName = function (name) {
+        this.name = name;
+    }
 }
-  
-/******************************************
-* THis function will inherite from the base
-*******************************************/
-function displayInfo() {
-  pDetails = {
-      gender: document.getElementById('gender').value,
-      eyeColor: document.getElementById('eColor').value,
-   };
-   
-    if (pDetails.gender === 'male' || pDetails.gender === 'Male'){
- 
-     pDetails.gender = "You're a very nice Man!";
-    }
-    else {
-    pDetails.gender= "You're a very nice Girl!";
-    }
-
-    if (pDetails.eyeColor === 'Green' ||  pDetails.eyeColor === 'green' || pDetails.eyeColor ==='blue' 
-            || pDetails.eyeColor ==='Blue') {
-      pDetails.eyeColor = "You seem to have blonde hair!";
-    }
     
-    else if ( pDetails.eyeColor === 'black' ||  pDetails.eyeColor === 'Black') {
-       pDetails.eyeColor = "You seem to have black hair!";
+/******************************************
+* Inheritance method applys here in the
+* function to create new objects.
+*******************************************/    
+function addObject () {
+    person += 1;
+    if (person == 1) {
+        person1 = new Parents();
+        var btn = document.createElement("BUTTON");
+        var t = document.createTextNode("person1");
+        btn.appendChild(t);
+        btn.addEventListener ("click", function() {
+            persons(1);
+        });
+        document.getElementById('output4').appendChild(btn);
     }
+    else if(person == 2) {
+        person2 = new Parents();
+        var btn = document.createElement("BUTTON");
+        var t = document.createTextNode("person2");
+        btn.appendChild(t);
+        btn.addEventListener ("click", function() {
+            persons(2);
+        });
+        document.getElementById('output4').appendChild(btn);
+    }
+    else if(person == 3) {
+        person3 = new Parents();
+        var btn = document.createElement("BUTTON");
+        var t = document.createTextNode("person3");
+        btn.appendChild(t);
+        btn.addEventListener ("click", function() {
+            persons(3);
+        });
+        document.getElementById('output4').appendChild(btn);
+    }
+    else if(person == 4) {
+        person4 = new Parents();
+        var btn = document.createElement("BUTTON");
+        var t = document.createTextNode("person4");
+        btn.appendChild(t);
+        btn.addEventListener ("click", function() {
+            persons(4);
+        });
+        document.getElementById('output4').appendChild(btn);
+        document.getElementById('personInput').innerHTML = '';
+        return;
+    }
+    document.getElementById('name').value=''; 
+    document.getElementById('gender').value=''; 
+    document.getElementById('age').value='';
+}
 
+/******************************************
+* Select each person and its detalis when
+* user clicks the button for each.
+*******************************************/ 
+function persons(person){
+    select = person;
+    if (person == 1) {
+        document.getElementById('output').innerHTML = person1.profile();
+    }
+    else if (person == 2) {
+        document.getElementById('output').innerHTML = person2.profile();
+    }
+    else if (person == 3){
+        document.getElementById('output').innerHTML = person3.profile();
+    }
+    else if (person == 4) {
+        document.getElementById('output').innerHTML = person4.profile();
+    }
+}
+
+/******************************************
+* Add a new object to the person's list
+*******************************************/ 
+function hobby() {
+    if (select == 1) {
+        person1.hobby = document.getElementById('hobby').value;
+        document.getElementById('output').innerHTML = person1.profile();
+    }
+    else if (select == 2) {
+        person2.hobby = document.getElementById('hobby').value;
+        document.getElementById('output').innerHTML = person2.profile();
+    }
+    else if (select == 3) {
+        person3.hobby = document.getElementById('hobby').value;
+        document.getElementById('output').innerHTML = person3.profile();
+    }
+    else if (select == 4) {
+        person4.hobby = document.getElementById('hobby').value;
+        document.getElementById('output').innerHTML = person4.profile();
+    }
     else {
-      pDetails.eyeColor = "You seem to have brown hair!";
+        document.getElementById('output2').innerHTML = "Please create object first!";
     }
-
 }
-
-/******************************************
-* THis function will save all the inputs
-*******************************************/
-function save() {
-  inheritance();
-  parentsInfo();
-  displayInfo();
-}
-
-/******************************************
-* THis function will inherite from the base
-*******************************************/
-function reset() {
-
-  document.getElementById('fName').value = null;
-  document.getElementById('yage').value = null;
-  document.getElementById('letter').value = null;
-  document.getElementById('fAge').value = null;
-  document.getElementById('mAge').value = null;
-  document.getElementById('gender').value = null;
-  document.getElementById('eColor').value = null;
-  document.getElementById('displayAll').innerHTML = null;
-}
-
-/******************************************
-* THis function will inherite from the base
-*******************************************/
-function displayAll() {
-
-document.getElementById('displayAll').innerHTML =  "Hi " + person.firstName + ". " + pDetails.gender + " " + pDetails.eyeColor + " <br> You said you're " + person.age + " years old. Do you know that your Mom was " + (parents.mAge - person.age) + "<br> and your Dad was " + (parents.fAge - person.age) + " years old when you were born. See we got to know more about you!" + "<br>"
-+ "<br>" + "Your personal letter: " + person.letter;
-}
-
-</script>
-</head>
-<body>
-  <header>
-<h1>CIT 261 Mobile Application-BYUI </h1>
-<ul>
-  <li><a href="index.html">Home</a></li>
-</ul>
-</header> 
- <div class="mainPage">
+    </script>
+    </head>
+    <body>
+    <header>
+       <h1>CIT 261 Mobile Application-BYUI </h1>
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        </ul>
+    </header> 
+    <div class="mainPage">
  
-<div class="content">
- <h2>Object Creation Functions, Inheritance, Properties, Methods, and Instantation</h2>
- <br><br>
- <p>Please fill out your information</p>
-<input type="input" id="fName" placeholder="Name">
-<input type="input" id="yage" placeholder="Age"><br>
-<br>
-<textarea type="text" id="letter" placeholder="Personal Letter" size="30"></textarea><br>
-<br><br>
+     <h2>Object Creation Functions, Inheritance, Properties, Methods, and Instantation</h2>
+     <br><br> 
+    
+    <h3>Create your own toy</h3>
+         <form name="myForm">
 
-<p>If you would like to see a surprise please add your parents's ages</p>
- <input type="input" id="fAge" placeholder="Dad's age">
- <input type="input"  id="mAge" placeholder="Mom's age"><br>
- <br><br>
-
- <h4>Let's us know more about you</h4>
-  <input type="input" id="gender" placeholder="Gender">
-  <input type="input" id="eColor" placeholder="Eye Color"><br>
- <br><br>
-
-<h4>Here's your summary</h4>
-<button type="button" onclick="save();">Save</button>
-<button type="button" onclick="displayAll();">Load and Display</button>
-<button type="button" onclick="reset();">Reset</button>
- <br>
- <div id="displayAll"></div><br><br><br>
- </div>
-
+			<input type="text" id="color" name="color" placeholder="What Color?"/><br>
+			<input type="text" id="size" name="size" placeholder="What Size?"/><br>
+			<label>Do you like it?</label>
+			<select id="good">
+				<option value="true">Yes</option>
+				<option value="false">No</option>
+			</select><br>
+			<button id="button" type="button" value="submit" onclick="createObject()">Create Object</button>
+		</form>
+    
+        <p id="displayObject"></p>
+        
+    
+    <hr>
+    
+    <h3>Inheritance Example</h3>
+<div id="personInput">
+		<input type="text" id="name" placeholder="Name" /><br>
+		<input type="text" id="gender" placeholder="Gender" /><br>
+		<input type="text" id="age" placeholder="Age" /><br>
+		<button onclick="addObject()" id="button1">Creat Person</button>
+</div>
+		
+		<div id="output2"></div><br>
+		<div id="output4"></div>
+		
+		<div id="output"></div>
+		<input type="text" id="hobby" placeholder="Hobby" />
+		<button onclick="hobby()">Set Hobby</button>
+		<div id="output4"></div>
+		<div id="output"></div>
+ 	
 </div>
  <footer>&COPY; 2017 Makram Ibrahim </footer>
 </body>

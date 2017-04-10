@@ -8,8 +8,8 @@
 
 <script type="text/javascript">
 /****************************************
-* This program will display a combine methods
-* of local storages.
+* This local storage function will carry
+* some data on server using storageitem keyword 
 *****************************************/
  function mylocalStorage() {
 
@@ -29,8 +29,8 @@
 // assign a new variable to array
 var letter = new Array();
 /****************************************
-* This program will display an Associate Array 
-* of local storages.
+* Get Letter function will display an Associate 
+* Array  of the local storages.
 *****************************************/
 function getLetter() {
   
@@ -68,46 +68,38 @@ document.getElementById("outputall").innerHTML =
  letter.present + ", I really like it. I can't believe that I am already " + letter.yourAge + " years old." +  " <br>Sincerely,<br>" + letter.yourName;
 }
 
-
 var car = new Array(); 
 /****************************************
-* This program will display a combine methods
-* of local storages.
+* Create Object function, will basically 
+* ask the user to type a input and save in the
+* local storages. 
 *****************************************/
-function createObject() {
+var objects = new Array();
 
-  var inputArray = document.getElementById('inputArray').value;
-  
-  localStorage.setItem('car', JSON.stringify(inputArray));
-  
-  car.push(inputArray);
-  document.getElementById('inputArray').value = "";
-
-   for (var i = 0; i < car.length; i++){
-    car[i];
- }
-
-  document.getElementById('outputCar').innerHTML = car;
+function listOfObjects() {
+    objects.push(document.getElementById('names').value);
+    localStorage.setItem("myList", JSON.stringify(objects));
+    document.getElementById('names').value='';
+    document.getElementById("output2").innerHTML = "Your list: " + objects;
 }
 
 /****************************************
-* This program will an object
-* of local storages.
+* The retruieve object fucntion will 
+* execute the output of the local storages.
 *****************************************/
 function retrieveObject() {
 
- retrCar = localStorage.getItem("car", JSON.stringify(inputArray));
- var car = JSON.parse(retrCar);
-
-document.getElementById("outputCar").innerHTML = car;
+    document.getElementById("output3").innerHTML = localStorage.myList; 
 }
+		
 
 /****************************************
-* This program will display a combine methods
-* of local storages.
+* Reset function will clear all the outputs
+* data for the user to retype again
 *****************************************/
 function reset() {
-  document.getElementById("output").innerHTML = "";
+    objects = [];
+    document.getElementById("output").innerHTML = "";
 }
 
 </script>
@@ -120,16 +112,15 @@ function reset() {
 </ul>
 </header> 
  <div class="mainPage">
-  <div class="content">
  <h2>Local Storage API, Storing and Retrieving Simple Data</h2>
  <!--prompt the user for input-->
  <button type="button" onclick="mylocalStorage();">Click</button>
  <button type="button" onclick="reset();">Reset</button>
  <h4>Retrieve Local Storages</h4>
- <!--display the combine output-->
- <div id="output"></div>
-
- <h2> This is a think you letter for someone gave you a present on your birthday</h2>
+ 
+ <!--Second example of creating a letter and retrieve it using json parse-->
+<div id="output"></div>
+ <h2> This is a thank you letter for someone gave you a present on your birthday</h2>
  <input type="input" id="giftGiver" placeholder="Gift giver's name:"><br>
  <input type="input" id="present" placeholder="Present's name:"><br>
  <input type="input" id="age" placeholder="Your age:"><br>
@@ -137,19 +128,21 @@ function reset() {
  <button type="button" onclick="getLetter();">Submit</button>
  <button type="button" onclick="retrieveLetter();">Retrieve</button>
  <div id="outputall"></div><br>
-
-<h2>Object</h2>
-<h4>Type a list of your favorite cars</h4>
- <input type="input" id="inputArray">
- <button type="button" onclick="createObject();">Submit</button>
- <button type="button" onclick="retrieveObject();">Retrieve</button>
- <div id="outputCar"></div>
+ 
+<!--Thrid example using create object in the local sotrages-->
+<h2>Objects</h2>
+ <h4>Make a new list of Objects </h4>
+		<input type="text" id="names"/>
+		<button onclick="listOfObjects()">Enter Object</button>
+		<button onclick="reset()">Reset</button>
+		<div id="output2"></div>
+	
+		<p> Retrieve the list even if you refresh the page!</p>
+		<button onclick="retrieveObject()">Retrieve List</button>
+		<div id="output3"></div>
 
 <br><br>
 </div>
- </div>
  <footer>&COPY; 2017 Makram Ibrahim </footer>
-</body>
-</html>
 </body>
 </html>

@@ -3,7 +3,7 @@
 ****************************/
 header{
 background-color: dodgerblue;
-padding: 1em;
+padding: 2em;
 color: white;
 text-align: center;
 border-radius: 25px;
@@ -19,26 +19,38 @@ h5,
 h6,
 p {
    color: white;
-   text-shadow: 2px 2px 2px black, 0 0 25px red, 10px 10px 15px blue;
+   text-shadow: 1px 1px 1px black, 0 0 2px red, 5px 6px 20px blue;
+}
+
+@media (max-width:768px){
+    .modal-tablet{width:500px}
+    .modal{padding-top:50px}
 }
 
 html{
  background-image:radial-gradient(blue,wheat);
- margin: 2em;
  text-align: center;
+ width: 90%;
+ margin-right: auto;
+ margin-left: auto;
+ 
 }
 
 body{
  margin-right: auto;
  margin-left: auto;
- width: 800px;
+ margin: 0;
  padding: 2em;
 }
 
 .mainPage{
 text-align:left;
 padding: 2em;
-background: wheat;
+background: #8F897F;
+ margin-right: auto;
+ margin-left: auto;
+ margin: 0;
+ padding: 2em;
 }
 
 p{
@@ -86,50 +98,130 @@ margin-top: -1em;
 text-shadow: 2px 2px 2px black, 0 0 25px red, 10px 10px 15px blue;
 }
 
-.forLoop{
-  display: inline-block;
-  padding: 2em;
-  margin-left: 2em; 
- }
 
- .whileLoop{
-  display: inline-block;
-  padding: 2em;
- }
+ *{margin: 0; padding: 0;}
 
-.doLoop{
-  display: inline-block;
-  padding: 2em;
-  margin-left: 4em;
- }
-
-.ifStatement{
-  display: inline-block;
-  padding: 2em;
- }
-
-.parameters{
-  display: inline-block;
-  padding: 2em;
-  margin-left: 8em;
-  
+#calendarwrap {
+    max-width: 924px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
-.array{
-  display: inline-block;
-  padding: 2em;
-  margin-left: 8em;
+.titlebar{
+    width: 100%;
+    height: 30px;
 }
 
-.assArray{
-  display: inline-block;
-  padding: 2em;
-  margin-left: 8em;
+.previousmonth {
+    float: left;
+    width: 150px;
+    height: 30px;
+    text-align: cetnter;
 }
 
-.content{
-  display: inline-block;
-  padding: 5em;
-  margin-left: 6em; 
- }
+.getMonth{
+    float: left;
+    width: 33.3%;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
 
+.nextMonth {
+    float: left;
+    width: 150px;
+    height: 30px;
+    text-align: cetnter;
+}
+
+.weekdays {
+    width: 100%;
+}
+
+.daysWeek {
+    float: left;
+    width: 14%;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.calday {
+    position: relative;
+    float: left;
+    margin-right: 1%;
+    margin-bottom: 4px;
+    width: 13.2%;
+    height: 95px;
+    background-color: #339BF3;
+}
+
+.dayheading {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 16px;
+    padding: 10px;
+    font-family: Arial;
+    font-size: 30px;
+    text-align: center;
+}
+
+.calday:hover, .calday:active{
+  background-color: #E2E2E2;
+}
+
+.nonCalday {
+    position: relative;
+    float: left;
+    margin-right: 1%;
+    margin-bottom: 1px;
+    width: 13.28%;
+    height: 95px;
+}
+
+
+#prev, 
+#next{
+  font-weight: bold;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+#prev:hover, 
+#prev:active, 
+#next:hover, 
+#next:active{
+  background-color: #E2E2E2;
+}
+
+/********** Mobile Media Application********/
+@media (max-width:600px){
+    .modal-content{
+        margin:0 10px;
+        width:auto!important
+}
+    
+.modal{
+    padding-top:30px
+}
+.topnav a{
+    display:block
+}
+
+.navbar li.right{
+        float:none!important
+}
+    
+    
+.topnav,.navbar{text-align:center}.hide-small{display:none!important}
+    
+}
+
+
+/******** Media for a tablet and large screen***********/
+
+@media (max-width:992px) and (min-width:601px){
+    .hide-medium{display:none!important}
+}

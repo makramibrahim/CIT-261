@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>CIT 261 | CSS Transition</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="index.css" media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    </script>
+ 
+<style>
+    #content{
+        margin: auto;
+    }
+    
+    #box{
+        width: 550px;
+        height: 500px;
+        margin: auto;
+        transition-duration: 2s;
+        animation-name: example;
+        position: relative; 
+        background-repeat: no-repeat;
+        background-image: url(images/madface.png);
+    }
+    
+    #box2{
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        background-repeat: no-repeat;
+        transition-duration: 2s;
+        position: relative; 
+        border-radius: 50px;
+    }
+ 
+    #box:hover {
+        background-color: yellow;
+        width: 400px;
+        height: 400px;
+    }
+    
+    #animateDiv{
+            width:50px;
+            height: 50px;
+            background: red;
+            border-radius: 50px;
+            animation-name: example;
+            position: relative;       
+        }
+        
+        @keyframes example {
+            0%  {background-image: url(images/smiley2.png); left:0px; top: 0px;}
+            25% {background-image: url(images/smiley2.png); left:500px; top: 0px;}
+            50% {background-image: url(images/smiley2.png); left:500px; top: 500px;}
+            75% {background-image: url(images/smiley2.png); left:0px; top: 500px;}
+            100%{background-image: url(images/smiley2.png); left:0px; top: 0px;}
+        }
+        
+</style>
+
+<script type="text/javascript">
+  
+/****************************************
+* This function will make a transition using css
+* trigged by JS.
+*****************************************/
+function transitionBox(element, width) {
+   
+    element = document.getElementById(element);
+    element.style.transition = 
+        "width 1s linear 0s";
+    element.style.width = width;
+}
+    
+/****************************************
+* This function will transform an element using css
+* trigged by JS.
+*****************************************/
+function transformBox(element, width) {
+   
+    element = document.getElementById(element);
+    element.style.transform = "width 1s linear 0s";
+    element.style.width = width;
+    
+}
+    
+/****************************************
+* This function will make an animate element
+* that moves on the screen and trigged by JS and CSS.
+*****************************************/
+function animationBox(number) {
+    
+        document.styleSheets[0].addRule("#box", "-webkit-animation-duration: 10s");  
+}
+    
+/****************************************
+* This function will create an animate element
+* trigged by JS and CSS.
+*****************************************/
+function cElement(element, width, color) {
+    var element = document.getElementById(element);
+    element.style.transition = "width 1s linear 0s, background 1s linear 0s";
+    element.style.width = width;
+    element.style.background = color;
+}
+  
+
+function reset(){
+    location.reload();
+}
+    
+</script>
+    </head>
+    <body>
+      <header>
+    <h1>CIT 261 Mobile Application-BYUI</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+
+     </header> 
+     <div class="mainPage">
+      <h2>CSS3 Transition and Animations</h2><br>
+      
+        <div id="box"></div> 
+         <div id="smile"></div>
+      <!-- Display an animate box-->
+    <h2>Animation Example</h2>
+    <button type="button" onclick="animationBox()" >Click Me</button>
+    <button type="button" onclick="reset()">Reset</button>
+   <hr>
+    
+    <!--Display transition on the same box-->
+  <h2>Transition Example</h2>
+
+    <button type="button" onclick="transitionBox('box', '1px')">Disappear</button>
+
+<hr>
+  <!-- Also do transform on the same box-->
+  <h2>Transform Example</h2>
+  <div type="button" onmouseover="transformBox('box', '500px')">On Mouse Over</div>
+    <hr>
+  <!-- Also do transform on the same box-->
+    <h2>Create Element Example</h2>
+   <button onclick="cElement('box2', '400px', 'red')">Change</button>
+   <button onclick="cElement('box2', '100px', 'blue')">Reverse</button>
+    <div id="box2"></div>    
+
+ </div>
+ <footer>&COPY; 2017 Makram Ibrahim </footer>
+</body>
+</html>
+
